@@ -57,6 +57,7 @@ node-typescript
 ├── .dockerignore
 ├── .prettierrc
 ├── Dockerfile
+├── docker-compose.yml
 ├── eslint.config.mjs
 ├── LICENSE
 ├── package.json
@@ -73,8 +74,7 @@ node-typescript
 |-------------------|-------------|
 | `pnpm start:dev`  | Start development server with hot reload |
 | `pnpm start:prod` | Start production server |
-| `pnpm build`      | Build project (dev) |
-| `pnpm build:prod` | Build project (production) |
+| `pnpm build`      | Build project|
 | `pnpm type:check` | TypeScript type checking |
 | `pnpm clean`      | Remove dist directory |
 | `pnpm lint`       | Run ESLint |

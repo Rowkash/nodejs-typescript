@@ -1,10 +1,10 @@
-FROM node:24.15-slim AS builder
+FROM node:26.13-slim AS builder
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN npm install -g --allow-scripts=pnpm pnpm
 
 RUN pnpm install --frozen-lockfile
 
@@ -14,11 +14,9 @@ RUN pnpm build
 
 RUN pnpm prune --prod
 
-FROM node:24.15-slim AS production
+FROM node:26.13-slim AS production
 
 WORKDIR /app
-
-ENV NODE_ENV=production
 
 COPY --from=builder --chown=node:node /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/dist ./dist
